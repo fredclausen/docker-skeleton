@@ -26,6 +26,11 @@ RUN set -x && \
     KEPT_PACKAGES+=(curl) && \
     KEPT_PACKAGES+=(ca-certificates) && \
     # install packages
+    apt-get update && \
+    apt-get install -y --no-install-recommends \
+        ${KEPT_PACKAGES[@]} \
+        ${TEMP_PACKAGES[@]} \
+        && \
     # Use normal shell commands to install
     # install S6 Overlay
     curl -s https://raw.githubusercontent.com/mikenye/deploy-s6-overlay/master/deploy-s6-overlay.sh | sh && \
